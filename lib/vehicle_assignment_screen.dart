@@ -21,7 +21,6 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
         child: AppBar(
           centerTitle: true,
           backgroundColor: Colors.white,
-          systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white),
           automaticallyImplyLeading: false,
           title: Text("Assignments", style: TextStyle(
             color: appBarTextColor,
@@ -36,36 +35,21 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
         child: Container(
           height: size.height,
           width: size.width,
-          child: Column(
-            children: [
-              Spacer(
-
-              ),
-
-              informationBox(text: "Vehicle", size: size),
-
-              Spacer(
-
-              ),
-
-              informationBox(text: "Trailers", size: size),
-
-              Spacer(
-
-              ),
-
-              informationBox(text: "Shipping ID", size: size),
-
-              Spacer(
-                flex: 8,
-              ),
-
-              roundedButton(text: "Done", onPressed: () {}),
-
-              Spacer(
-                flex: 15,
-              ),
-            ],
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Spacer(),
+                informationBox(text: "Vehicle", size: size),
+                Spacer(),
+                informationBox(text: "Trailers", size: size),
+                Spacer(),
+                informationBox(text: "Shipping ID", size: size),
+                Spacer(flex: 8),
+                roundedButton(text: "Done", onPressed: () {}),
+                Spacer(flex: 6),
+              ],
+            ),
           ),
         ),
       ),
@@ -75,31 +59,36 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
 
 Widget informationBox({required String text, required size}) {
   return Card(
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
+    //margin: EdgeInsets.only(left: 16, right: 16),
+    child: Container(
+      padding: EdgeInsets.only(left: 16, right: 16),
+      height: 79,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
             text,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
             style: TextStyle(
               fontSize: 16,
               color: appBarTextColor,
             ),
           ),
 
+          Spacer(),
 
-       SizedBox(width: 1),
-
-       Text(
-          text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 16,
-            color: appBarTextColor,
+          Text(
+            text,
+            textAlign: TextAlign.right,
+            style: TextStyle(
+              fontSize: 16,
+              color: appBarTextColor,
+            ),
           ),
-        ),
 
-      ],
+        ],
+      ),
+
     ),
   );
 }
