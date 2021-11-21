@@ -6,7 +6,8 @@ class VehiCleAssignmentScreen extends StatefulWidget {
   const VehiCleAssignmentScreen({Key? key}) : super(key: key);
 
   @override
-  _VehiCleAssignmentScreenState createState() => _VehiCleAssignmentScreenState();
+  _VehiCleAssignmentScreenState createState() =>
+      _VehiCleAssignmentScreenState();
 }
 
 class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
@@ -21,15 +22,16 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
           centerTitle: true,
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          title: Text("Assignments", style: TextStyle(
-            color: appBarTextColor,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),),
+          title: Text(
+            "Assignments",
+            style: TextStyle(
+              color: appBarTextColor,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
-
-      ),
-
       body: SingleChildScrollView(
         child: Container(
           height: size.height,
@@ -43,7 +45,10 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
                 Spacer(),
                 informationBox(text: "Trailers", rightText: "Add a Trailer"),
                 Spacer(),
-                informationBox(text: "Shipping IDs", rightText: "Add a Shipping ID", id: "197687"),
+                informationBox(
+                    text: "Shipping IDs",
+                    rightText: "Add a Shipping ID",
+                    id: "197687"),
                 Spacer(flex: 8),
                 roundedButton(text: "Done", onPressed: () {}),
                 Spacer(flex: 9),
@@ -56,8 +61,9 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
   }
 }
 
-Widget informationBox({required String text, required String rightText, String? id}) {
-  if(id == null) {
+Widget informationBox(
+    {required String text, required String rightText, String? id}) {
+  if (id == null) {
     return Container(
       color: Colors.white,
       padding: EdgeInsets.only(left: 16, right: 16),
@@ -75,9 +81,7 @@ Widget informationBox({required String text, required String rightText, String? 
               ),
             ),
           ),
-
           Spacer(),
-
           Center(
             child: Text(
               rightText,
@@ -128,9 +132,7 @@ Widget informationBox({required String text, required String rightText, String? 
                   ),
                 ),
               ),
-
               Spacer(),
-
               Center(
                 child: Text(
                   rightText,
@@ -147,5 +149,4 @@ Widget informationBox({required String text, required String rightText, String? 
       ),
     );
   }
-
 }

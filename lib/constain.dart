@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 const String assets_id = "assets/images/driver-license 1.svg";
 const String assets_userName = "assets/images/user 1.svg";
 const String assets_lock = "assets/images/Lock.svg";
