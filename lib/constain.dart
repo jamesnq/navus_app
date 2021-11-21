@@ -1,4 +1,3 @@
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
 
@@ -11,3 +10,4 @@ const Color textColor = Color(0xFFC4C4C4);
 const Color backgroundColor = Color(0xFFF5F5F5);
 const Color buttonColor = Color(0xFF022AB5);
 const Color appBarTextColor = Color(0xFF25345C);
+const Color activeTextColor = Color(0xFF0F72DC);
