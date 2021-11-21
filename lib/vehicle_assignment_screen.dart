@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'login_screen.dart';
 import 'constain.dart';
 
@@ -40,14 +39,14 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Spacer(),
-                informationBox(text: "Vehicle", size: size),
+                informationBox(text: "Vehicle", rightText: "Add a Vehicle"),
                 Spacer(),
-                informationBox(text: "Trailers", size: size),
+                informationBox(text: "Trailers", rightText: "Add a Trailer"),
                 Spacer(),
-                informationBox(text: "Shipping ID", size: size),
+                informationBox(text: "Shipping IDs", rightText: "Add a Shipping ID", id: "197687"),
                 Spacer(flex: 8),
                 roundedButton(text: "Done", onPressed: () {}),
-                Spacer(flex: 6),
+                Spacer(flex: 9),
               ],
             ),
           ),
@@ -57,38 +56,96 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
   }
 }
 
-Widget informationBox({required String text, required size}) {
-  return Card(
-    //margin: EdgeInsets.only(left: 16, right: 16),
-    child: Container(
+Widget informationBox({required String text, required String rightText, String? id}) {
+  if(id == null) {
+    return Container(
+      color: Colors.white,
       padding: EdgeInsets.only(left: 16, right: 16),
       height: 79,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            text,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: 16,
-              color: appBarTextColor,
+          Center(
+            child: Text(
+              text,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 16,
+                color: appBarTextColor,
+              ),
             ),
           ),
 
           Spacer(),
 
-          Text(
-            text,
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              fontSize: 16,
-              color: appBarTextColor,
+          Center(
+            child: Text(
+              rightText,
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontSize: 16,
+                color: activeTextColor,
+              ),
             ),
           ),
-
         ],
       ),
+    );
+  } else {
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.only(left: 16, right: 16),
+      height: 100,
+      child: Column(
+        children: [
+          Spacer(flex: 2),
+          //Row 1
+          Row(
+            children: [
+              Center(
+                child: Expanded(
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: appBarTextColor,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Spacer(),
+          //Row 2
+          Row(
+            children: [
+              Center(
+                child: Text(
+                  id,
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
 
-    ),
-  );
+              Spacer(),
+
+              Center(
+                child: Text(
+                  rightText,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: activeTextColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Spacer(flex: 2),
+        ],
+      ),
+    );
+  }
+
 }
