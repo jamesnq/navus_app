@@ -67,7 +67,7 @@ Widget informationBox(
     return Container(
       color: Colors.white,
       padding: EdgeInsets.only(left: 16, right: 16),
-      height: 79,
+      height: 100,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
