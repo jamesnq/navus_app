@@ -1,87 +1,49 @@
 import 'package:flutter/material.dart';
 
-import '../constain.dart';
-
 class InformationBox extends StatelessWidget {
-  final String text;
-  final String rightText;
-  final String? id;
-  final bool isId;
+  final String title;
+  final String? value;
+  final String? subTitle;
+  final Widget? right;
 
   const InformationBox({
     Key? key,
-    required String this.text,
-    required String this.rightText,
-    String? this.id,
-    this.isId = false,
+    required this.title,
+    this.value,
+    this.subTitle,
+    this.right,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      height: 100,
-      child: Column(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Spacer(),
-          //Row 1
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Expanded(
-                  child: Text(
-                    this.text,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: appBarTextColor,
-                    ),
-                  ),
-                ),
+              Text(
+                title,
+                style: const TextStyle(fontSize: 17),
               ),
-              Spacer(),
-              Center(
-                child: !this.isId ? Expanded(
-                  child: Text(
-                    this.text,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: appBarTextColor,
-                    ),
-                  ),
-                ) : null
-              ),
+              subTitle != null
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Text(
+                        subTitle ?? "",
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    )
+                  : Container(),
             ],
-
           ),
-           Spacer(),
-          //Row 2
-          this.isId ? Container(
-            child: Row(
-              children: [
-                Center(
-                  child: Text(
-                    this.id!,
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-                Spacer(),
-                Center(
-                  child: Text(
-                    this.rightText,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: activeTextColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-          ) : Container(),
-          this.isId ? Spacer() : Container(),
+          Text(
+            value ?? "",
+            style: const TextStyle(fontSize: 17, color: Colors.blue),
+          ),
         ],
       ),
     );

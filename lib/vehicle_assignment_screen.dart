@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navus_app/widget/information_box.dart';
 import 'package:navus_app/widget/rounded_button.dart';
-import 'login_screen.dart';
 import 'constain.dart';
 
 class VehiCleAssignmentScreen extends StatefulWidget {
@@ -24,7 +23,7 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
           centerTitle: true,
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          title: Text(
+          title: const Text(
             "Assignments",
             style: TextStyle(
               color: appBarTextColor,
@@ -35,27 +34,26 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: size.height,
           width: size.width,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Spacer(),
-                InformationBox(text: "Vehicle", rightText: "Add a Vehicle"),
-                Spacer(),
-                InformationBox(text: "Trailers", rightText: "Add a Trailer"),
-                Spacer(),
-                InformationBox(
-                    text: "Shipping IDs",
-                    rightText: "Add a Shipping ID",
-                    id: "197687",
-                    isId: true,
+                const Spacer(),
+                const InformationBox(title: "Vehicle", value: "Add a Vehicle"),
+                const Spacer(),
+                const InformationBox(title: "Trailers", value: "Add a Trailer"),
+                const Spacer(),
+                const InformationBox(
+                  title: "Shipping IDs",
+                  subTitle: "197687",
+                  value: "Add a Shipping ID",
                 ),
-                Spacer(flex: 8),
+                const Spacer(flex: 8),
                 RoundedButton(text: "Done", onPressed: () {}),
-                Spacer(flex: 9),
+                const Spacer(flex: 9),
               ],
             ),
           ),
