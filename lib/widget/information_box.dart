@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../constain.dart';
 
-class InformationBox extends StatefulWidget {
+class InformationBox extends StatelessWidget {
   final String text;
   final String rightText;
   final String? id;
   final bool isId;
+
   const InformationBox({
     Key? key,
     required String this.text,
@@ -16,15 +17,10 @@ class InformationBox extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _InformationBoxState createState() => _InformationBoxState();
-}
-
-class _InformationBoxState extends State<InformationBox> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.only(left: 16, right: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       height: 100,
       child: Column(
         children: [
@@ -35,7 +31,7 @@ class _InformationBoxState extends State<InformationBox> {
               Center(
                 child: Expanded(
                   child: Text(
-                    widget.text,
+                    this.text,
                     style: TextStyle(
                       fontSize: 16,
                       color: appBarTextColor,
@@ -45,9 +41,9 @@ class _InformationBoxState extends State<InformationBox> {
               ),
               Spacer(),
               Center(
-                child: !widget.isId ? Expanded(
+                child: !this.isId ? Expanded(
                   child: Text(
-                    widget.text,
+                    this.text,
                     style: TextStyle(
                       fontSize: 16,
                       color: appBarTextColor,
@@ -60,12 +56,12 @@ class _InformationBoxState extends State<InformationBox> {
           ),
            Spacer(),
           //Row 2
-          widget.isId ? Container(
+          this.isId ? Container(
             child: Row(
               children: [
                 Center(
                   child: Text(
-                    widget.id!,
+                    this.id!,
                     style: TextStyle(
                       fontSize: 16,
                     ),
@@ -74,7 +70,7 @@ class _InformationBoxState extends State<InformationBox> {
                 Spacer(),
                 Center(
                   child: Text(
-                    widget.rightText,
+                    this.rightText,
                     style: TextStyle(
                       fontSize: 16,
                       color: activeTextColor,
@@ -85,7 +81,7 @@ class _InformationBoxState extends State<InformationBox> {
             ),
 
           ) : Container(),
-          widget.isId ? Spacer() : Container(),
+          this.isId ? Spacer() : Container(),
         ],
       ),
     );
