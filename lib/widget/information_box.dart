@@ -83,8 +83,9 @@ class _InformationBoxState extends State<InformationBox> {
                 ),
               ],
             ),
-          ) : null,
-          Spacer(),
+
+          ) : Container(),
+          widget.isId ? Spacer() : Container(),
         ],
       ),
     );
