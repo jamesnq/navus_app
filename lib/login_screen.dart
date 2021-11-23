@@ -13,6 +13,27 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController? usernameController;
+  TextEditingController? passwordController;
+  String username = "none";
+  String password = "none";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    usernameController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    usernameController!.dispose();
+    passwordController!.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -41,15 +62,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   leafIcon: assets_id,
                 ),
                 const Spacer(),
-                const TextFieldCustom(
+                TextFieldCustom(
                   placeholder: "Username",
                   leafIcon: assets_userName,
+                  controller: usernameController,
                 ),
                 const Spacer(flex: 1),
-                const TextFieldCustom(
+                TextFieldCustom(
                   placeholder: "Password",
                   leafIcon: assets_lock,
                   isPassword: true,
+                  controller: passwordController,
                 ),
                 const Spacer(flex: 1),
                 SizedBox(
