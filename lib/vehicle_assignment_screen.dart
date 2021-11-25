@@ -33,7 +33,7 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body: Container(
         child: SizedBox(
           height: size.height,
           width: size.width,
@@ -53,7 +53,7 @@ class _VehiCleAssignmentScreenState extends State<VehiCleAssignmentScreen> {
                 ),
                 const Spacer(flex: 8),
                 RoundedButton(text: "Done", onPressed: () {}),
-                const Spacer(flex: 9),
+                const Spacer(flex: 5),
               ],
             ),
           ),

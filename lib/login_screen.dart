@@ -13,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   TextEditingController? usernameController;
   TextEditingController? passwordController;
   String username = "none";
@@ -46,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Center(
             child: Column(
               children: [
-                const Spacer(flex: 6),
+                const Spacer(flex: 6), //6
                 SvgPicture.asset(assets_logo, alignment: Alignment.center),
                 const Spacer(flex: 1),
                 const Text(
@@ -57,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const Spacer(flex: 1),
-                const TextFieldCustom(
+                TextFieldCustom(
                   placeholder: "Fleet ID",
                   leafIcon: assets_id,
                 ),
@@ -85,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const Spacer(flex: 5),
+                const Spacer(flex: 5),//5
                 RoundedButton(
                   text: "Login",
                   onPressed: () {
@@ -94,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.push(context, route);
                   },
                 ),
-                const Spacer(flex: 3),
+                const Spacer(flex: 3),//3
               ],
             ),
           ),

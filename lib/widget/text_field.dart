@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:navus_app/constain.dart';
+import 'package:navus_app/text_validation.dart';
 
 class TextFieldCustom extends StatefulWidget {
   final String leafIcon;
   final bool isPassword;
   final String placeholder;
-
-  const TextFieldCustom({
+  TextFieldCustom({
     Key? key,
     required this.leafIcon,
     this.isPassword = false,
@@ -21,34 +21,19 @@ class TextFieldCustom extends StatefulWidget {
 
 class _TextFieldState extends State<TextFieldCustom> {
   bool showPassword = false;
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  String? usernameError;
+  String? passwordError;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    RegExp regex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
-    return Form(
-      key: _formkey,
-      child: SizedBox(
+    return SizedBox(
         width: size.width * 0.9,
-        child: TextFormField(
-          obscureText: !showPassword,
-          validator: (value) {
-            if(value.isNotEmpty && value.length < 8) {
-              if(widget.isPassword) {
-                if(!regex.hasMatch(value)) {
-                  return 'Password must contain 8 digits and have at least 1 Upper case, 1 Numeric Number and 1 Speacial Character';
-                } else {
-                  return null;
-                }
-              }
-              return 'Please enter at least 8 digit';
-            } else {
-              return 'Please enter the required field';
-            }
-          },
+        child: TextField(
+          obscureText: widget.isPassword ? !showPassword : showPassword,
           decoration: InputDecoration(
+            errorText: widget.isPassword ? passwordError : usernameError,
             border: const UnderlineInputBorder(
               borderSide: BorderSide(
                 style: BorderStyle.solid,
@@ -81,9 +66,27 @@ class _TextFieldState extends State<TextFieldCustom> {
               color: textColor,
               fontSize: 14,
             ),
+
           ),
+          onChanged: (value) {
+            setState(() {
+                
+            });
+          },
         ),
-      ),
-    );
+      );
+
+
+  }
+
+  validate() {
+    if(!validateStructure(value: widget.controller.text)){
+      setState(() {
+        usernameError = "Please enter 8 digits";
+      });
+      return;
+    };
+
   }
 }
+
