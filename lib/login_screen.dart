@@ -35,6 +35,10 @@ class _LoginScreenState extends State<LoginScreen> {
     passwordController!.dispose();
   }
 
+  String? errorTextID;
+  String? errorTextUsername;
+  String? errorTextPassword;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -61,12 +65,36 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextFieldCustom(
                   placeholder: "Fleet ID",
                   leafIcon: assets_id,
+                  errorText: errorTextID,
+                  onChanged: (text) {
+                    setState(() {
+                      if(text.isEmpty) {
+                        errorTextID = "Please enter ID";
+                      } else if(text.length < 8) {
+                        errorTextID = "ID must have 8 characters";
+                      } else {
+                        errorTextID = null;
+                      }
+                    });
+                  },
                 ),
                 const Spacer(),
                 TextFieldCustom(
                   placeholder: "Username",
                   leafIcon: assets_userName,
                   controller: usernameController,
+                  errorText: errorTextUsername,
+                  onChanged: (text) {
+                    setState(() {
+                      if(text.isEmpty) {
+                        errorTextUsername = "Please enter username";
+                      } else if(text.length < 8) {
+                        errorTextUsername = "Username must have 8 characters";
+                      } else {
+                        errorTextUsername = null;
+                      }
+                    });
+                  },
                 ),
                 const Spacer(flex: 1),
                 TextFieldCustom(
@@ -74,6 +102,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   leafIcon: assets_lock,
                   isPassword: true,
                   controller: passwordController,
+                  errorText: errorTextPassword,
+                  onChanged: (text) {
+                    RegExp regexUpperCase = RegExp(r'^(?=.*?[A-Z])');
+                    RegExp regexNumber = RegExp(r'^(?=.*?[A-Z])(?=.*?[0-9])');
+                    RegExp regexSpecialChar = RegExp(r'^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!@#\$&*~])');
+                    if(text.isEmpty) {
+                      errorTextPassword = 'Please enter password';
+                    } else if(text.length < 8) {
+                      errorTextPassword = 'Password must have 8 characters';
+                    } else if(!regexUpperCase.hasMatch(text)) {
+                      errorTextPassword = 'Password must have 1 Uppercase character';
+                    } else if(!regexNumber.hasMatch(text)) {
+                      errorTextPassword = 'Password must have 1 number';
+                    } else if(!regexSpecialChar.hasMatch(text)) {
+                      errorTextPassword = 'Password must have 1 Special Characer';
+                    } else {
+                      errorTextPassword = null;
+                    }
+                  },
                 ),
                 const Spacer(flex: 1),
                 SizedBox(
@@ -90,9 +137,25 @@ class _LoginScreenState extends State<LoginScreen> {
                 RoundedButton(
                   text: "Login",
                   onPressed: () {
-                    var route = MaterialPageRoute(
-                        builder: (context) => VehiCleAssignmentScreen());
-                    Navigator.push(context, route);
+                    if(errorTextID == null && errorTextUsername == null && errorTextPassword == null) {
+                      var route = MaterialPageRoute(
+                          builder: (context) => VehiCleAssignmentScreen());
+                      Navigator.push(context, route);
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text("Alert"),
+                            content: const Text('Please enter valid ID, username and password'),
+                            actions: [
+                              TextButton(onPressed: () => Navigator.pop(context, 'OK'),
+                                  child: const Text('OK'))
+                            ],
+                          ),
+                      );
+
+                    }
+
                   },
                 ),
                 const Spacer(flex: 3),//3
